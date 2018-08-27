@@ -17,6 +17,7 @@ class CreateOwnersTable extends Migration
             $table->increments('id');
             $table->text('name');
             $table->text('surname');
+            $table->text('car_id');
             $table->timestamps();
         });
     }

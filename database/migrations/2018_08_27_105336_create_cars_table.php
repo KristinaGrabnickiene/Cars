@@ -19,6 +19,7 @@ class CreateCarsTable extends Migration
             $table ->text('brand');
             $table ->text('model');
             $table ->integer('owner_id');
+            $table->text('jpg');
             $table->timestamps();
         });
     }
