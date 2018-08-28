@@ -25,4 +25,10 @@ Route::get("/cars/{id}", "CarsController@show")->name('cars.show');
 
 Route::get("/edit/{id}", "CarsController@edit") ->name('cars.edit');
 
-Route::get("/update", "CarsController@update") ->name('update');
+Route::post("/update", "CarsController@update") ->name('cars.update');
+
+Route::get("/delete/{id}", "CarsController@delete") ->name('cars.delete');
+
+Route::get('/create', 'CarsController@save')->name('cars.create'); 
+
+Route::post('/store', 'CarsController@store')->name('cars.store'); 

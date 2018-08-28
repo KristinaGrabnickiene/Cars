@@ -45,8 +45,26 @@ class CarsController extends Controller
      */
     public function store(Request $request)
     {
+            $cars = new Car;
+    
+            $cars->brand = $request ->brand;
+            $cars->model = $request ->model;
+            $cars->reg_number = $request ->reg_number;
+            $cars->jpg = $request ->jpg;
+            $cars->owner_id = $request ->owner_id;
+            
+            $cars->save();
+
+            return redirect()->route("cars.index");
+        }
+
+        public function save(){
         //
-    }
+        $cars = Car::all();
+       return view ("create", [ "cars"=> $cars ]);
+        
+            }
+    
 
     /**
      * Display the specified resource.
@@ -101,17 +119,34 @@ class CarsController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
-    }
+        //dd( $request->input() );
 
+        
+        $cars = Car::find($id);
+        
+        $cars->brand = $request ->brand;
+        $cars->model = $request ->model;
+        $cars->reg_number = $request ->reg_number;
+        $cars->jpg = $request ->jpg;
+        $cars->owner_id = $request ->owner_id;
+        
+        $cars->save();
+
+        return redirect()->route('cars.index');
+        
+    
+    }
     /**
      * Remove the specified resource from storage.
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function delete($id)
     {
-        //
+        $cars = Car::find($id);
+
+        $cars->delete();
+        return view ("delete", [ "cars"=> $cars ]);
     }
 }
