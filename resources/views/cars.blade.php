@@ -3,6 +3,7 @@
 
 @section('content')
 <div class="container">
+<h1> Viso masinu: {{ $countcars}} </h1>
     <table class="table table-striped table-dark">
     <th scope="col"> <h1> Mašinos modelis </h1></th>
     <th scope="col"> <h1>Savininkai</h1> </th> 

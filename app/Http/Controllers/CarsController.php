@@ -17,7 +17,14 @@ class CarsController extends Controller
     public function index()
     {
         $cars = Car::all();
-        return view("cars", ["cars"=>$cars] );
+        $countcars = Car::count("id");
+       
+        return view("cars", [
+        "cars"=>$cars,
+        "countcars"=>$countcars
+        ] );
+
+       
     }
 
     /**
@@ -57,10 +64,12 @@ class CarsController extends Controller
         $cars = Car::find($id);
         
         $allOwners = Owner::where("car_id", $id)->get();
-       
+
+        
         return view('carsItem', [
             "carsItem" => $cars,
-            "owners" => $allOwners
+            "owners" => $allOwners,
+           
        ]);
         
     }
