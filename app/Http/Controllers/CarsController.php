@@ -75,6 +75,12 @@ class CarsController extends Controller
     public function edit($id)
     {
         //
+        $cars = Car::find($id);
+        if(count($cars)>0 ){
+            return view ("edit", [ "cars"=> $cars ]);
+        }else{
+            return view ("cars", [ "cars"=> $cars ]);
+        }
     }
 
     /**

@@ -22,3 +22,7 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/cars', 'CarsController@index')->name('cars.index'); 
 
 Route::get("/cars/{id}", "CarsController@show")->name('cars.show');
+
+Route::get("/edit/{id}", "CarsController@edit") ->name('cars.edit');
+
+Route::get("/update", "CarsController@update") ->name('update');
