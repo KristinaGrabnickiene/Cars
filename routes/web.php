@@ -23,9 +23,11 @@ Route::get('/cars', 'CarsController@index')->name('cars.index');
 
 Route::get("/cars/{id}", "CarsController@show")->name('cars.show');
 
-Route::get("/edit/{id}", "CarsController@edit") ->name('cars.edit');
 
-Route::post("/update", "CarsController@update") ->name('cars.update');
+
+Route::get("/cars/{id}/edite", "CarsController@edite")->name('cars.edite');
+
+Route::post("/cars/{id}/update", "CarsController@update")->name('cars.update');
 
 Route::get("/delete/{id}", "CarsController@delete") ->name('cars.delete');
 

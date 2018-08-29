@@ -5,11 +5,13 @@
 
 
 <div class="container">
-<form method="post" action= '{{ route("cars.update") }}'>
+<form method="post" action= '{{ route("cars.update", $cars->id) }}'>
 
  <input type="hidden" name ="userId" value='
  {{ ($cars) ? $cars["id"]: "" }}'>
  {{ csrf_field()}}
+
+ <h1> Redaguojamas komentaras : {{ $cars->id }}</h1> 
 <table class="table table-striped table-light">
     <tr>
     <td>  Mašinos gamintojas:  </td>
@@ -47,7 +49,7 @@
     </tr>
     <tr>
    
-    <td> <input type="submit" name="submit" value="Taisyti"> </td>
+    <td> <input type="submit" name="submit" value="Atnaujinti"> </td>
     
     </tr>
 </table>

@@ -33,7 +33,7 @@
 		
         </td>
         <td>
-				<a href="{{ route('cars.edit', $carsItem->id) }}"> <button  type="button" class="btn btn-secondary">
+				<a href="{{ route('cars.edite', $carsItem->id)}}"> <button  type="button" class="btn btn-secondary">
                 
                  Taisyti </button>
 				</a>
