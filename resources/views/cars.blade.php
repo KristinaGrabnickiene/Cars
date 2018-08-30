@@ -3,7 +3,7 @@
 
 @section('content')
 <div class="container">
-<h1> Viso mašinų yra: {{ $countcars}} </h1>
+<h1> Viso mašinų yra: {{ $cars->count() }} </h1>
  <a href="{{ route('cars.create') }}"><button  type="button" class="btn btn-dark btn-lg"> 
                 
                  Sukurti naują mašinos įrašą </button>
@@ -28,7 +28,7 @@
 			<!-- Kreipimasis i route'a su parametrais -->
 				<a href="{{ route('cars.show', $carsItem->id) }}"> 
                 
-                << savininkų duomenys
+                << savininkų duomenys {{ $carsItem->owners->count() }}
                </a>
 		
         </td>
