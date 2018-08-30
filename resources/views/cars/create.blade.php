@@ -36,19 +36,13 @@
     <td> <input type="text" name="jpg"    
     value = '//res.cloudinary.com/carsguide/image/upload/f_auto,fl_lossy,q_auto,t_cg_hero_low/v1/editorial/vhs/Mercedes-Benz-A-Class.png'
     > </td>
-    </tr>
+    
 
     <tr>
-    <td>  Mašinos savininkas: </td>
-    <td> <input type="text" name="owner_id"    
-    value = '1'
-    > </td>
-    </tr>
-    <tr>
    
-    <td> <input type="submit" name="submit" value="Pridėti naują"> </td>
-    
+    <td> <input type="submit" name="submit" value="Pridėti naują"> </td> <td> </td>
     </tr>
+    
 </table>
 </form>
 

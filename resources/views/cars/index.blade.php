@@ -33,17 +33,22 @@
 		
         </td>
         <td>
-				<a href="{{ route('cars.edite', $carsItem->id)}}"> <button  type="button" class="btn btn-secondary">
+				<a href="{{ route('cars.edit', $carsItem->id)}}"> <button  type="button" class="btn btn-secondary">
                 
                  Taisyti </button>
 				</a>
-               
-                <a href="{{ route('cars.delete', $carsItem->id) }}"><button  type="button" class="btn btn-danger"> 
-                
-                 Ištrinti </button>
-				</a>
+              
 		
         </td>
+        <td>  
+         <form action="{{ route('cars.delete', $carsItem->id) }}" method="POST">
+                            <!--  Su post metodu dirbant sau formom visada butina ideti sita laukeli  -->
+                            {{ csrf_field() }}
+                            <input
+                            class="btn btn-danger"
+                            type="submit" value="Trinti">
+                        </form>
+         </td>
 	</tr>
 	@endforeach
 

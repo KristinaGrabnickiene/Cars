@@ -20,12 +20,11 @@ class CarsController extends Controller
        
         $owners = Owner::all();
         
-        return view("cars", [
+        return view("cars.index", [
         "cars"=>$cars,
         "owners"=> $owners
         ] );
 
-       
     }
 
     /**
@@ -52,7 +51,7 @@ class CarsController extends Controller
             $cars->model = $request ->model;
             $cars->reg_number = $request ->reg_number;
             $cars->jpg = $request ->jpg;
-            $cars->owner_id = $request ->owner_id;
+            
             
             $cars->save();
 
@@ -62,7 +61,7 @@ class CarsController extends Controller
         public function save(){
         //
         $cars = Car::all();
-       return view ("create", [ "cars"=> $cars ]);
+       return view ("cars.create", [ "cars"=> $cars ]);
         
             }
     
@@ -85,14 +84,13 @@ class CarsController extends Controller
         $allOwners = Owner::where("cars_id", $id)->get();
 
         
-        return view('carsItem', [
+        return view('cars.show', [
             "carsItem" => $cars,
             "owners" => $allOwners,
            
        ]);
         
     }
-    
 
     /**
      * Show the form for editing the specified resource.
@@ -100,14 +98,12 @@ class CarsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edite($id)
+    public function edit($id)
     {
     
-        $cars = Car::find($id);
-       
-        return view('edite',[
+        $cars = Car::find($id);     
+        return view('cars.edit',[
                     "cars" => $cars,
-                   
                     ]);
 
     }
@@ -121,21 +117,18 @@ class CarsController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //dd( $request->input() );
-
-        
+            
         $cars = Car::find($id);
         
         $cars->brand = $request ->brand;
         $cars->model = $request ->model;
         $cars->reg_number = $request ->reg_number;
         $cars->jpg = $request ->jpg;
-        $cars->owner_id = $request ->owner_id;
+       
         
         $cars->save();
 
         return redirect()->route('cars.index');
-        
     
     }
     /**
@@ -144,11 +137,13 @@ class CarsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function delete($id)
+    public function destroy($id)
     {
         $cars = Car::find($id);
 
         $cars->delete();
-        return view ("delete", [ "cars"=> $cars ]);
+
+        return redirect()->route('cars.index');
+        
     }
 }

@@ -17,7 +17,7 @@
     <td>  Mašinos gamintojas:  </td>
     <td> <input type="text" name="brand"
    value = '{{ ($cars) ? $cars["brand"]: "" }}'
-    > </td>
+    > </td> 
     </tr>
 
     <tr>
@@ -41,15 +41,9 @@
     > </td>
     </tr>
 
-    <tr>
-    <td>  Mašinos savininkas: </td>
-    <td> <input type="text" name="owner_id"    
-    value = '{{ ($cars) ? $cars["owner_id"]: "" }}'
-    > </td>
-    </tr>
-    <tr>
+
    
-    <td> <input type="submit" name="submit" value="Atnaujinti"> </td>
+    <td> <input type="submit" name="submit" value="Atnaujinti"> </td> <td> </td>
     
     </tr>
 </table>

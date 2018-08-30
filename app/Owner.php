@@ -10,11 +10,4 @@ class Owner extends Model
 {
     protected $table = "owners";
 
-    public function cars()
-
-    {
-    
-     return $this->hasOne('App\Car', 'owner_id', 'id');
-    
-    }
 }
