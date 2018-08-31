@@ -14,6 +14,7 @@
     <th scope="col-3"> <h1> Mašinos modelis </h1></th>
     <th scope="col"> <h1>Savininkai</h1> </th> 
     <th scope="col"> </th> 
+    <th scope="col"> </th> 
     
 	<!-- Einame per visa masinu masyva gauta is carsController -->
 	@foreach($cars as $carsItem)
@@ -28,7 +29,7 @@
 			<!-- Kreipimasis i route'a su parametrais -->
 				<a href="{{ route('cars.show', $carsItem->id) }}"> 
                 
-                << savininkų duomenys {{ $carsItem->owners->count() }}
+                << kiekis  ({{ $carsItem->owners->count() }})
                </a>
 		
         </td>

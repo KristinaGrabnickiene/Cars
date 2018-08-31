@@ -34,3 +34,11 @@ Route::post('/cars/{id}/delete', 'CarsController@destroy')->name('cars.delete');
 Route::get('/create', 'CarsController@save')->name('cars.create'); 
 
 Route::post('/store', 'CarsController@store')->name('cars.store'); 
+
+//owneriu routai
+Route::get('/owners', 'OwnersController@index')->name('owners.index'); 
+Route::get('/owners/create', 'OwnersController@create')->name('owners.create'); 
+Route::post('/owners/store', 'OwnersController@store')->name('owners.store'); 
+Route::get("/owners/{id}/edit", "OwnersController@edit")->name('owners.edit');
+Route::post("/owners/{id}/update", "OwnersController@update")->name('owners.update');
+Route::post('/owners/{id}/delete', 'OwnersController@destroy')->name('owners.delete');
