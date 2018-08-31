@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Car;
 Use App\Owner;
+use Session;
+use Validator;
 
 
 class CarsController extends Controller
@@ -45,6 +47,17 @@ class CarsController extends Controller
      */
     public function store(Request $request)
     {
+        $messages = [
+    		'required' => 'Laukelis :attribute turi buti užpildytas'
+            ];
+        Validator::make($request->all(), [
+            'brand' => 'required',
+            'model' => 'required',
+            'reg_number' => 'required',
+            'jpg' => 'required',
+    ], $messages)->validate();
+
+
             $cars = new Car;
     
             $cars->brand = $request ->brand;
@@ -55,12 +68,14 @@ class CarsController extends Controller
             
             $cars->save();
 
+            Session::flash( 'status', 'Sukurtas naujas automobilio įrašas' );
             return redirect()->route("cars.index");
         }
 
         public function save(){
         //
         $cars = Car::all();
+        
        return view ("cars.create", [ "cars"=> $cars ]);
         
             }
@@ -117,7 +132,17 @@ class CarsController extends Controller
      */
     public function update(Request $request, $id)
     {
-            
+        $messages = [
+    		'required' => 'Laukelis :attribute turi buti užpildytas'
+            ];
+        Validator::make($request->all(), [
+            'brand' => 'required',
+            'model' => 'required',
+            'reg_number' => 'required',
+            'jpg' => 'required',
+    ], $messages)->validate();
+
+
         $cars = Car::find($id);
         
         $cars->brand = $request ->brand;
@@ -127,7 +152,7 @@ class CarsController extends Controller
        
         
         $cars->save();
-
+        Session::flash( 'status', 'Įrašas atnaujintas sėkmingai' );
         return redirect()->route('cars.index');
     
     }
@@ -142,7 +167,7 @@ class CarsController extends Controller
         $cars = Car::find($id);
 
         $cars->delete();
-
+        Session::flash( 'status', 'Automibilio įrašas ištrintas sėkmingai' );
         return redirect()->route('cars.index');
         
     }

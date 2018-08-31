@@ -3,8 +3,14 @@
 
 @section('content')
 
+       
 
 <div class="container">
+<div class="col-md-8">
+    @if (Session::has('status'))
+         <div class="alert alert-info">{{ Session::get('status') }}</div>
+    @endif
+</div>
 <h1> Viso savininkų yra: {{ $owners->count() }} </h1>
 
  <a href="{{ route('owners.create')}}"><button  type="button" class="btn btn-dark btn-lg"> 

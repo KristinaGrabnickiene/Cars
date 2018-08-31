@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Car;
 Use App\Owner;
+use Session;
+use Validator;
 
 class OwnersController extends Controller
 {
@@ -42,6 +44,25 @@ class OwnersController extends Controller
      */
     public function store(Request $request)
     {
+        $messages = [
+                'surname.required' => 'Neįrašyta Pavardė',
+                'name.required' => 'Neįrašytas Vardas',
+                'phone.required' => 'Telefonas turi buti įvestas',
+                'required' => 'Laukelis :attribute turi buti įvestas'
+            ];
+        // Patikriname uzklausos duomenis
+		$validatedOwner = $request->validate([
+    
+                // 1. Formos laukelio padinimas 
+                // 2. visos taisykles
+    			// Jei naudojame unique po dvitaskio duomenu bazes pavadinimas
+    			// kurioje reiksme turi buti unikali
+                'name' => 'required',
+                'surname' => 'required',
+    			'cars_id' => 'required',
+    			'phone' => 'required',
+    		], $messages);
+    
         $owners= new Owner;
 
         $owners->name = $request ->name;
@@ -51,6 +72,7 @@ class OwnersController extends Controller
         
         $owners->save();
 
+        Session::flash( 'status', 'Sukurtas naujas savininkas' );
         return redirect()->route("owners.index");
     }
 
@@ -88,6 +110,17 @@ class OwnersController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $messages = [
+    		'required' => 'Laukelis :attribute turi buti užpildytas'
+            ];
+        Validator::make($request->all(), [
+            'name' => 'required',
+            'surname' => 'required',
+            'cars_id' => 'required',
+            'phone' => 'required|min:9',
+    ], $messages)->validate();
+
+
         $owners = Owner::find($id);
         
         $owners->name = $request ->name;
@@ -98,6 +131,7 @@ class OwnersController extends Controller
         $owners->save();
        
         
+        Session::flash( 'status', 'Redagavimas baigtas' );
         return redirect()->route("owners.index");
     }
 
@@ -112,6 +146,8 @@ class OwnersController extends Controller
         $owners = Owner::find($id);
         $owners->delete();
 
+        // Susikuriu sesijos pranesima
+		Session::flash( 'status', 'Savininkas  ištrintas ' );
         return redirect()->route("owners.index");
 
     }

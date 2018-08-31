@@ -5,6 +5,17 @@
 
 
 <div class="container">
+
+{{-- Klaidu isvedimas pagal laravelio validatoriu--}}
+       @if ($errors->any())
+            <div class="alert alert-danger">
+                <ul>
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+        @endif
 <form method="post" action= "{{ route('owners.store') }}">
 
  <input type="hidden" name ="userId" value=''>
@@ -13,14 +24,16 @@
     <tr>
     <td>  Vartotojo vardas:  </td>
     <td> <input type="text" name="name"
-   value = 'Kristina'
-    > </td>
+    {{-- Jei validacija nepraejo, tai atspausdiname senus duomenis--}}
+     value="{{ old('name') }}"
+  
+      > </td>
     </tr>
 
     <tr>
     <td>  Vartotojo pavardė: </td>
     <td> <input type="text" name="surname"
-    value = 'Kazakevič'
+    value="{{ old('surname') }}"
     > </td>
     </tr>
 
@@ -34,7 +47,7 @@
     <tr>
     <td>  Mašinos tipas: </td>
     <td> <input type="text" name="cars_id"    
-    value = '10'
+    value="{{ old('cars_id') }}"
     > </td>
     
 

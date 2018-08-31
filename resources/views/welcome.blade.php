@@ -79,13 +79,16 @@
 
             <div class="content">
                 <div class="title m-b-md">
-                    Mšinos duomenys
+                    Mašinų duomenys
                 </div>
 
                 <div class="links">
-                    <a href="http://localhost/Cars/public/cars">Visos mašinos</a>
+                    <a href="http://localhost/Cars/public/cars">Mašinos</a>
+                    <a href="http://localhost/Cars/public/owners">Savininkai</a>
                     <a href="http://localhost/Cars/public/cars/2">Mašinu modelis</a>
                     <a href="http://localhost/Cars/public/create">Pridėti mašiną</a>
+                    <a href="http://localhost/Cars/public/owner/create">Pridėti mašinos savininką</a>
+                    
 
                     
                 </div>

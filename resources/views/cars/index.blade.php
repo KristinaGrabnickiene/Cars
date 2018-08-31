@@ -3,11 +3,20 @@
 
 @section('content')
 <div class="container">
+<div class="col-md-8">
+    @if (Session::has('status'))
+         <div class="alert alert-info">{{ Session::get('status') }}</div>
+    @endif
+</div>
 <h1> Viso mašinų yra: {{ $cars->count() }} </h1>
  <a href="{{ route('cars.create') }}"><button  type="button" class="btn btn-dark btn-lg"> 
                 
                  Sukurti naują mašinos įrašą </button>
-				</a>
+				</a> 
+
+<a href="http://localhost/Cars/public/"><button  type="button" class="btn btn-primary btn-lg "> 
+                
+                Titulinis </button>
                 <br>
                 <br>
     <table class="table table-striped table-dark">
@@ -22,7 +31,7 @@
 		<td>
 			
 				<!--  Spausdiname masinos pavadinima -->
-				{{ $carsItem->brand }} {{ $carsItem->model }}
+				{{ $carsItem->brand }} {{ $carsItem->model }} <img src="{{ $carsItem->jpg }}" height="100" width="150" >
 			
         </td>
         <td>
