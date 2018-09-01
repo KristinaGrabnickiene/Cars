@@ -51,6 +51,12 @@
     > </td>
     </tr>
 
+    <tr>
+    <td>  Lytis:  </td>
+    <td> <input type="text" name="gender"    
+    value = '{{ ($owners) ? $owners["gender"]: "" }}'
+    > </td>
+    </tr>
 
    
     <td> <input type="submit" name="submit" value="Atnaujinti"> </td> <td> </td>

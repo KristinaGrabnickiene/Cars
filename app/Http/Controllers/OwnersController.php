@@ -1,6 +1,8 @@
 <?php
 
 namespace App\Http\Controllers;
+use Illuminate\Pagination\Paginator;
+use Illuminate\Pagination\LengthAwarePaginator;
 
 use Illuminate\Http\Request;
 use App\Car;
@@ -17,11 +19,44 @@ class OwnersController extends Controller
      */
     public function index()
     {
-        $owners =  Owner::all();
+        $owners = New Owner;
+        // $masyvas =[];
+        // $columms = [
+        //         'gender', 'name',
+        //         ];
 
-        return view("owners.index", [
-            "owners"=>$owners
-            ] );
+        //  foreach($columms as $columm){
+        //     if( request()->has("columm")){
+        //         $owners= $owners->where("columm", request("columm"));
+        //         $masyvas["columm"] = request("columm");
+        //         }
+        //     }
+
+        if (request()->has("gender")){
+             $owners= $owners->where("gender", request("gender"));
+         }
+         
+         if (request()->has("name")){
+            $owners= $owners-> where("name", request("name"));
+        }
+         if (request()->has("sort")){
+                $owners = $owners->orderBy("name", request("sort"));
+         }
+                
+            $owners = $owners->paginate(10)->appends([
+                  //  "gender"=> request("gender"),
+                    "sort" => request("sort")
+
+                ]);
+   
+          return view("owners.index", compact("owners"));
+          
+
+        // $owners =  Owner::paginate(10);
+
+        // return view("owners.index", [
+        //     "owners"=>$owners
+        //     ] );
     }
 
     /**
@@ -60,7 +95,8 @@ class OwnersController extends Controller
                 'name' => 'required',
                 'surname' => 'required',
     			'cars_id' => 'required',
-    			'phone' => 'required',
+                'phone' => 'required',
+                'gender' => 'required',
     		], $messages);
     
         $owners= new Owner;
@@ -69,6 +105,7 @@ class OwnersController extends Controller
         $owners->surname = $request ->surname;
         $owners->cars_id = $request ->cars_id;
         $owners->phone = $request ->phone;
+        $owners->gender = $request ->gender;
         
         $owners->save();
 
@@ -118,6 +155,7 @@ class OwnersController extends Controller
             'surname' => 'required',
             'cars_id' => 'required',
             'phone' => 'required|min:9',
+            'gender' => 'required|',
     ], $messages)->validate();
 
 
@@ -127,6 +165,7 @@ class OwnersController extends Controller
         $owners->surname = $request ->surname;
         $owners->cars_id = $request ->cars_id;
         $owners->phone = $request ->phone;
+        $owners->gender = $request ->gender;
         
         $owners->save();
        

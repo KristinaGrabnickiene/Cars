@@ -11,7 +11,7 @@
          <div class="alert alert-info">{{ Session::get('status') }}</div>
     @endif
 </div>
-<h1> Viso savininkų yra: {{ $owners->count() }} </h1>
+<h1> Viso yra: {{ $owners->count() }} </h1>
 
  <a href="{{ route('owners.create')}}"><button  type="button" class="btn btn-dark btn-lg"> 
                 
@@ -19,11 +19,25 @@
 				</a>
                 <br>
                 <br>
+        <div class="row">
+            <div class="col-3">
+                    Rikiuoti pagal :   
+                    <a href="?sort=asc" > A -> Ž  </a> arba 
+                    <a href="?sort=desc" > Ž -> A   </a>
+                    </div>
+            <div class="col-9">
+                    Filtruoti pagal :   
+                    <a href="?gender=Vyras" > Vyrus </a> arba
+                    <a href="?gender=Moteris" > Moteris  </a> arba parodyti tik 
+                    <a href="?name=Kristina" > Kristina  </a>
+            </div>
+        </div>
     <table class="table table-striped table-dark">
     <th scope="col-3"> <h1> Vardas </h1></th>
     <th scope="col"> <h1>Pavardė </h1> </th> 
     <th scope="col"> <h1>Mašinos modelis </h1></th> 
-    <th scope="col"><h1>Tel numeris </h1></th> 
+    <th scope="col"><h1>Tel numeris </h1></th>
+    <th scope="col"><h1>Lytis</h1></th>  
     <th scope="col"></th> 
     <th scope="col"></th> 
     
@@ -34,6 +48,7 @@
         <td> {{ $oneOwner->surname }} </td>
         <td> << tokia ( {{ $oneOwner->cars_id }} ) </td>
         <td> {{ $oneOwner->phone }} </td>
+        <td> {{ $oneOwner->gender }} </td>
         
        
         <td>
@@ -58,4 +73,9 @@
 
     
 </table>
+
+{{ $owners->links() }}
+
+
+
 @endsection

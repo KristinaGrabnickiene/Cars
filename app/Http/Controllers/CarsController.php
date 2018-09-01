@@ -1,6 +1,10 @@
 <?php
 
 namespace App\Http\Controllers;
+use Illuminate\Pagination\Paginator;
+use Illuminate\Pagination\LengthAwarePaginator;
+use Illuminate\Database\Eloquent\Model;
+;
 
 use Illuminate\Http\Request;
 use App\Car;
@@ -18,10 +22,18 @@ class CarsController extends Controller
      */
     public function index()
     {
-        $cars = Car::all();
-       
-        $owners = Owner::all();
+        if( request()->has("brand")){
+          //  $cars = Car::paginate(10);
+          $cars = Car::where("brand", request("brand"))->paginate(10)->appends("brand", request("brand"));
+        } else if ( request()->has("sort")){
+            $cars = Car::orderBy("brand", request("sort"))->paginate(10)->appends("sort", request("sort"));
         
+
+
+        } else{
+            $cars = Car::paginate(10);
+        }
+         $owners = Owner::all();   
         return view("cars.index", [
         "cars"=>$cars,
         "owners"=> $owners
@@ -29,9 +41,14 @@ class CarsController extends Controller
 
     }
 
+
+   
+
+   
     /**
      * Show the form for creating a new resource.
-     *
+     * if( request()->has("brand")){
+     *   $cars = Car::were("brand", request ("brand"))->paginate(7)->appends('brand', request('brand'));
      * @return \Illuminate\Http\Response
      */
     public function create()

@@ -40,7 +40,7 @@
     <tr>
     <td>  Telefono numeris: </td>
     <td> <input type="text" name="phone"    
-    value = '8686 31605'
+    value = "{{ old('phone') }}"
     > </td>
     </tr>
 
@@ -49,7 +49,17 @@
     <td> <input type="text" name="cars_id"    
     value="{{ old('cars_id') }}"
     > </td>
+    </tr>
+
+    <tr>
+    <td>  Lytis:  </td>
+    <td> <input type="text" name="gender"    
+    value = "{{ old('gender') }}"
+    > </td>
+    </tr>
     
+
+
 
     <tr>
    
