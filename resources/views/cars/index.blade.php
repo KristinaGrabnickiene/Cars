@@ -3,31 +3,34 @@
 
 @section('content')
 <div class="container">
-<div class="col-md-8">
-    @if (Session::has('status'))
-         <div class="alert alert-info">{{ Session::get('status') }}</div>
-    @endif
-</div>
-<h1> Viso mašinų yra: {{ $cars->count() }} </h1>
+
+
+
+ <h5> Viso mašinų yra: {{ $cars->count() }} </h5>
+ @guest
+@else
+ @if(Auth::user()->role == "admin")
  <a href="{{ route('cars.create') }}"><button  type="button" class="btn btn-dark btn-lg"> 
                 
                  Sukurti naują mašinos įrašą </button>
 				</a> 
-
+@endif
+@endguest
                 <br>
+               
                 <br>
         <div class="row">
-            <div class="col-6">
+            <div class="col-8">
                 Filtruojame pagal   |
-                <a href="?brand=TOYOTA" > TOYOTA  | </a>
-                 <a href="?brand=FORD" > FORD   | </a>
-                 <a href="?brand=MERCEDES%20BENZ" > MERcEDES Benz   | </a></td> 
-                 <a href="?brand=HYUNDAI" > HYUNDAI   | </a></td> 
-                 <a href="?brand=NISSAN" > NISSAN   | </a></td> 
-                 <a href="?brand=KIA" > KIA   | </a></td> 
-                 <a href="?" > Visos </a></td> 
+                <a href="?brand=TOYOTA" > TOYOTA   </a>|
+                 <a href="?brand=FORD" > FORD    </a>|
+                 <a href="?brand=MERCEDES%20BENZ" > MERCEDES Benz    </a>|
+                 <a href="?brand=HYUNDAI" > HYUNDAI    </a>|
+                 <a href="?brand=NISSAN" > NISSAN    </a>| 
+                 <a href="?brand=KIA" > KIA    </a>|
+                 <a href="?" > Visi </a>
             </div>
-            <div class="col-6">
+            <div class="col-4">
                 Rikiavimas :   |
                <a href="?sort=asc" > A -> Z | </a>
                <a href="?sort=desc" > Z -> A  | </a>
@@ -53,9 +56,11 @@
 				<a href="{{ route('cars.show', $carsItem->id) }}"> 
                 
                 << kiekis  ({{ $carsItem->owners->count() }})
+               
                </a>
 		
         </td>
+        @if(Auth::user())
         <td>
 				<a href="{{ route('cars.edit', $carsItem->id)}}"> <button  type="button" class="btn btn-secondary">
                 
@@ -73,6 +78,7 @@
                             type="submit" value="Trinti">
                         </form>
          </td>
+         @endif  
 	</tr>
 	@endforeach
 

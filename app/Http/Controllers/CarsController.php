@@ -11,6 +11,7 @@ use App\Car;
 Use App\Owner;
 use Session;
 use Validator;
+use Auth;
 
 
 class CarsController extends Controller

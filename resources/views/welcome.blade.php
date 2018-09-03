@@ -87,7 +87,7 @@
                     <a href="http://localhost/Cars/public/owners">Savininkai</a>
                     <a href="http://localhost/Cars/public/cars/2">Mašinu modelis</a>
                     <a href="http://localhost/Cars/public/create">Pridėti mašiną</a>
-                    <a href="http://localhost/Cars/public/owner/create">Pridėti mašinos savininką</a>
+                    <a href="http://localhost/Cars/public/owners/create">Pridėti mašinos savininką</a>
                     
 
                     

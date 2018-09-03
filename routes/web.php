@@ -12,7 +12,7 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('cars.index');
 });
 
 Auth::routes();
@@ -31,13 +31,13 @@ Route::post("/cars/{id}/update", "CarsController@update")->name('cars.update');
 
 Route::post('/cars/{id}/delete', 'CarsController@destroy')->name('cars.delete');
 
-Route::get('/create', 'CarsController@save')->name('cars.create'); 
+Route::get('/create', 'CarsController@save')->name('cars.create')->middleware('role'); 
 
 Route::post('/store', 'CarsController@store')->name('cars.store'); 
 
 //owneriu routai
 Route::get('/owners', 'OwnersController@index')->name('owners.index'); 
-Route::get('/owners/create', 'OwnersController@create')->name('owners.create'); 
+Route::get('/owners/create', 'OwnersController@create')->name('owners.create')->middleware('role'); 
 Route::post('/owners/store', 'OwnersController@store')->name('owners.store'); 
 Route::get("/owners/{id}/edit", "OwnersController@edit")->name('owners.edit');
 Route::post("/owners/{id}/update", "OwnersController@update")->name('owners.update');

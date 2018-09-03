@@ -9,9 +9,16 @@ use App\Car;
 Use App\Owner;
 use Session;
 use Validator;
+use Auth;
 
 class OwnersController extends Controller
 {
+    // uzdeda autentifikacija ant visu funkciju
+    // public function __construct() {
+    //             $this->middleware('auth');
+    //         }
+
+
     /**
      * Display a listing of the resource.
      *

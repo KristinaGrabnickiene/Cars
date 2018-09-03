@@ -6,17 +6,17 @@
        
 
 <div class="container">
-<div class="col-md-8">
-    @if (Session::has('status'))
-         <div class="alert alert-info">{{ Session::get('status') }}</div>
-    @endif
-</div>
-<h1> Viso yra: {{ $owners->count() }} </h1>
 
+<h5> Viso yra: {{ $owners->count() }} </h5>
+@guest
+@else
+ @if(Auth::user()->role == "admin")
  <a href="{{ route('owners.create')}}"><button  type="button" class="btn btn-dark btn-lg"> 
                 
                  Sukurti naują </button>
 				</a>
+@endif
+@endguest 
                 <br>
                 <br>
         <div class="row">
@@ -46,11 +46,15 @@
     <tr scope="row">
 		<td>{{ $oneOwner->name }} </td>
         <td> {{ $oneOwner->surname }} </td>
-        <td> << tokia ( {{ $oneOwner->cars_id }} ) </td>
+        <td> << tokia ( {{ $oneOwner->cars_id }} )
+        
+
+        
+         </td>
         <td> {{ $oneOwner->phone }} </td>
         <td> {{ $oneOwner->gender }} </td>
         
-       
+        @if(Auth::user())
         <td>
 				<a href="{{ route('owners.edit', $oneOwner->id)}}"> <button  type="button" class="btn btn-secondary">
                 
@@ -68,6 +72,7 @@
                             type="submit" value="Trinti">
                         </form>
          </td>
+         @endif
 	</tr>
 	@endforeach
 
