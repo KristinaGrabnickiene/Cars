@@ -15,7 +15,7 @@
                 </ul>
             </div>
      @endif
-<form method="post" action= '{{ route("cars.update", $cars->id) }}'>
+<form method="post" action= '{{ route("cars.update", $cars->id) }}' enctype='multipart/form-data'>
 
  <input type="hidden" name ="userId" value='
  {{ ($cars) ? $cars["id"]: "" }}'>
@@ -46,7 +46,7 @@
 
     <tr>
     <td>  Mašinos paveiklsiukas: </td>
-    <td> <input type="text" name="jpg"    
+    <td> <input type="file" name="jpg"    
     value = '{{ ($cars) ? $cars["jpg"]: "" }}'
     > </td>
     </tr>

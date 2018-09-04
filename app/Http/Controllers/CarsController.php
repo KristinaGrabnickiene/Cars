@@ -81,7 +81,11 @@ class CarsController extends Controller
             $cars->brand = $request ->brand;
             $cars->model = $request ->model;
             $cars->reg_number = $request ->reg_number;
-            $cars->jpg = $request ->jpg;
+            
+
+            $request ->file("jpg")->store('public');
+            
+            $cars->jpg = $request ->file("jpg")->hashName();
             
             
             $cars->save();
@@ -166,8 +170,8 @@ class CarsController extends Controller
         $cars->brand = $request ->brand;
         $cars->model = $request ->model;
         $cars->reg_number = $request ->reg_number;
-        $cars->jpg = $request ->jpg;
-       
+        $request ->file("jpg")->store('public');
+        $cars->jpg = $request ->file("jpg")->hashName();
         
         $cars->save();
         Session::flash( 'status', 'Įrašas atnaujintas sėkmingai' );

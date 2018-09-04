@@ -47,9 +47,17 @@
     <tr scope="row">
 		<td>
 			
-				<!--  Spausdiname masinos pavadinima -->
-				{{ $carsItem->brand }} {{ $carsItem->model }} <img src="{{ $carsItem->jpg }}" height="100" width="150" >
-			
+                <!--  Spausdiname masinos pavadinima -->
+                
+                @if($carsItem->id == 33 || $carsItem->id == 34 )
+
+                    {{ $carsItem->brand }} {{ $carsItem->model }} 
+                <img src="{{ asset('storage/' . $carsItem->jpg) }}" height="100" width="150">
+                  @else
+                    {{ $carsItem->brand }} {{ $carsItem->model }} 
+                <img src="{{ $carsItem->jpg }}" height="100" width="150" > 
+                
+                @endif
         </td>
         <td>
 			<!-- Kreipimasis i route'a su parametrais -->

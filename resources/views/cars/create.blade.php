@@ -16,7 +16,7 @@
                 </ul>
             </div>
         @endif
-<form method="post" action= "{{ route('cars.store') }}">
+<form method="post" action= "{{ route('cars.store') }}" enctype="multipart/form-data">
 
  <input type="hidden" name ="userId" value=''>
  {{ csrf_field()}}
@@ -44,8 +44,8 @@
 
     <tr>
     <td>  Mašinos paveiklsiukas: </td>
-    <td> <input type="text" name="jpg"    
-    value = '//res.cloudinary.com/carsguide/image/upload/f_auto,fl_lossy,q_auto,t_cg_hero_low/v1/editorial/vhs/Mercedes-Benz-A-Class.png'
+    <td> <input type="file" name="jpg"    
+    value = ''
     > </td>
     
 
